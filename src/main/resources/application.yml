@@ -4,12 +4,12 @@ spring:
       client:
         registration:
           google:
-            client-id: ${GOOGLE_OAUTH_CLIENT_ID}
-            client-secret: ${GOOGLE_OAUTH_CLIENT_SECRET}
+            client-id: 685702242020-va2nea7li49u9kmtssesopgqes6ii921.apps.googleusercontent.com
+            client-secret: 7HWhsuGt8UE0iaJ-AyxD8zCG
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://db:5432/demo
+    username: postgres
+    password: kI_f315KueN
     driver-class-name: org.postgresql.Driver
   jpa:
     database: postgresql
@@ -17,9 +17,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   flyway:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://db:5432/demo
+    username: postgres
+    password: kI_f315KueN
 logging:
   level:
     org.springframework.security: debug

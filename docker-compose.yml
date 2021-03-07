@@ -1,11 +1,17 @@
 version: "3.9"
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - "8080:8080"
   db:
     image: postgres
     environment:
       - POSTGRES_DB=demo
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=kI_f315KueN
-    ports:
-    - 5432:5432
+    expose:
+      - "5432"
