@@ -6,10 +6,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-pull_request:
-  types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened]
 jobs:
-  build:
+  sonar:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -36,11 +35,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dspring-boot.run.profiles=dev
   artifact:
     name: Publish - GitHub Packages
     runs-on: ubuntu-18.04
-    needs: [ test, sonar ]
+    needs: [ sonar ]
     steps:
       - uses: actions/checkout@v1
       - name: Set up JDK 11
@@ -53,6 +52,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
     runs-on: ubuntu-latest
+    # Запускаем деплой после тестов
+    needs: [ sonar ]
     steps:
       - uses: actions/checkout@v2
 
