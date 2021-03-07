@@ -52,6 +52,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
     runs-on: ubuntu-latest
+    # Запускаем деплой после тестов
+    needs: [ sonar ]
     steps:
       - uses: actions/checkout@v2
 
