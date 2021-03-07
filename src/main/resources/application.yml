@@ -4,22 +4,22 @@ spring:
       client:
         registration:
           google:
-            client-id: ${GOOGLE_OAUTH_CLIENT_ID}
-            client-secret: ${GOOGLE_OAUTH_CLIENT_SECRET}
+            client-id: stub-id
+            client-secret: stub-secret
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+  flyway:
+    url: jdbc:h2:mem:db
+    username: sa
+    password: sa
   jpa:
-    database: postgresql
+    database: h2
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-  flyway:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+        dialect: org.hibernate.dialect.H2Dialect
 logging:
   level:
     org.springframework.security: debug
