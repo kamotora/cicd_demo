@@ -6,10 +6,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-pull_request:
-  types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened]
 jobs:
-  build:
+  sonar:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +39,7 @@ jobs:
   artifact:
     name: Publish - GitHub Packages
     runs-on: ubuntu-18.04
-    needs: [ test, sonar ]
+    needs: [ sonar ]
     steps:
       - uses: actions/checkout@v1
       - name: Set up JDK 11
