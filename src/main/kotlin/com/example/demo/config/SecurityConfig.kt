@@ -15,6 +15,7 @@ class SecurityConfig(private val oauthService: OauthService) : WebSecurityConfig
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/public**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2Login()
