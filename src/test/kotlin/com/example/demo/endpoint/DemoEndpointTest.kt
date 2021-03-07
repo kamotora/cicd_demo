@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.get
 
 
 @SpringBootTest
-@ActiveProfiles("local")
+@ActiveProfiles("test")
 @AutoConfigureMockMvc
 class DemoEndpointTest {
 
